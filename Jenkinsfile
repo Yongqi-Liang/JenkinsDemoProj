@@ -1,21 +1,30 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/Yongqi-Liang/JenkinsDemoProj.git',
-                    credentialsId: 'f2e2a744-f19f-45ce-aff5-5b9b5c0b1b18'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh '''
-                echo "Starting test stage..."
-                echo "Hello from Jenkins machine!"
-                echo "Test stage completed."
-                '''
-            }
-        }
-    }
+ agent any
+ stages{
+   stage ('Prepare'){
+     steps{
+       echo "准备环境"
+     }
+   } 
+   stage ('Checkout'){
+     steps{
+       echo "获取代码"
+     }
+   }
+   stage ('Build'){
+     steps{
+       echo "构建镜像"
+     }
+   }
+   stage ('Deploy'){
+     steps{ 
+       echo "部署项目"
+     }
+     }
+   stage ('Test'){
+     steps{
+       echo "测试效果"
+     }
+   }
+ }
 }
